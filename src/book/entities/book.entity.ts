@@ -1,19 +1,16 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Book } from '../../book/entities/book.entity';
+import { User } from '../../user/entities/user.entity';
 import { JoinColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class Book {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  title: string;
 
-  @Column()
-  age: number;
-
-  @OneToOne(() => Book, (book) => book.user)
+  @OneToOne(() => User, (user) => user.book)
   @JoinColumn()
-  book: Book;
+  user: User;
 }
