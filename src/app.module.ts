@@ -4,7 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { BookModule } from './book/book.module';
-import {Book} from "./book/entities/book.entity";
+import { Book } from './book/entities/book.entity';
+import { LibraryModule } from './library/library.module';
+import { Library } from './library/entities/library.entity';
 
 @Module({
   imports: [
@@ -21,13 +23,14 @@ import {Book} from "./book/entities/book.entity";
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         synchronize: true,
-        entities: [User, Book],
+        entities: [User, Book, Library],
         autoLoadEntities: true,
       }),
       inject: [ConfigService],
     }),
     UserModule,
     BookModule,
+    LibraryModule,
   ],
   controllers: [],
   providers: [],
